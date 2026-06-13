@@ -7,7 +7,7 @@
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Official website of Sps X Apps. Discover Task Hunt, a one stop place for premium productivity apps designed for Android.">
-    <meta name="keywords" content="Sps X Apps, Task Hunt, Android Apps, Gamified Productivity, Task Manager, Kotlin, Jetpack Compose, Developer Portfolio">
+    <meta name="keywords" content="Sps X Apps, Task Hunt, Android Apps, Gamified Productivity, Task Manager, Kotlin, Flutter, Developer Portfolio">
     <meta name="author" content="Sps X Apps">
     
     <!-- Open Graph / Facebook -->
@@ -24,10 +24,12 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/sps_logo.png">
 </head>
 <body>
     <!-- Background glowing ambient lights -->
@@ -88,7 +90,7 @@
                         Software That <span class="text-gradient">Feels Alive</span>.
                     </h1>
                     <p class="hero-subtitle">
-                        We build highly performant, visually stunning, and gamified applications for Android. Experience fluid UI, modern engineering, and design that elevates your daily digital lifestyle.
+                        I build highly performant, visually pleasing, and unique applications for Android. Experience fluid UI, modern engineering, and design that elevates your daily digital lifestyle.
                     </p>
                     <div class="hero-actions">
                         <a href="#task-hunt" class="btn btn-primary">
@@ -174,7 +176,7 @@
                         </div>
                         <div class="feature-content">
                             <h3>Gamified Dashboard</h3>
-                            <p>Check off daily tasks to gain XP. Experience a smooth level-up journey with responsive haptic cues and custom audio designs inside the app.</p>
+                            <p>Check off your tasks to gain XP. Experience a smooth level-up journey with responsive haptic cues and custom audio designs inside the app.</p>
                         </div>
                     </div>
                     
@@ -283,7 +285,7 @@
                                                     </svg>
                                                 </div>
                                                 <div class="task-info">
-                                                    <span class="task-title">Build Compose UI</span>
+                                                    <span class="task-title">Build Flutter UI</span>
                                                     <span class="task-xp">+45 XP</span>
                                                 </div>
                                             </div>
@@ -472,7 +474,7 @@
                 <span class="section-tag">Engineering Philosophy</span>
                 <h2 class="section-title">Under The Hood</h2>
                 <p class="section-desc">
-                    We build modern apps using native tools to ensure the highest standards of performance, smooth animations, and system-level integration.
+                    I build modern apps using native tools to ensure the highest standards of performance, smooth animations, and system-level integration.
                 </p>
             </div>
             
@@ -488,16 +490,13 @@
                 
                 <!-- Tech Card 2 -->
                 <div class="tech-card reveal-up">
-                    <div class="tech-icon-wrapper compose-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="7" height="9" rx="1"/>
-                            <rect x="14" y="3" width="7" height="5" rx="1"/>
-                            <rect x="14" y="12" width="7" height="9" rx="1"/>
-                            <rect x="3" y="16" width="7" height="5" rx="1"/>
+                    <div class="tech-icon-wrapper flutter-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14.314 0L2.3 12 6 15.7 21.684.012h-7.357L14.314 0zm.014 11.072l-6.471 6.457 6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.371z"/>
                         </svg>
                     </div>
-                    <h3>Jetpack Compose</h3>
-                    <p>Declarative UI toolkit driving our layout system. Empowers Sps X Apps to create fully responsive, dynamic component flows and hardware-accelerated animations.</p>
+                    <h3>Flutter</h3>
+                    <p>Modern multi-platform UI toolkit driving our layout system. Empowers Sps X Apps to build highly responsive, performant user interfaces with fluid, hardware-accelerated animations.</p>
                 </div>
                 
                 <!-- Tech Card 3 -->
@@ -521,7 +520,7 @@
                 <span class="section-tag">Let's Connect</span>
                 <h2 class="section-title">Inquiries & Feedback</h2>
                 <p class="section-desc">
-                    Have feedback about Task Hunt? Interested in a collaboration? Drop us a line below and we will get back to you within 24 hours.
+                    Have feedback about Task Hunt? Interested in a collaboration? Drop us a line below and we will get back to you as soon as possible.
                 </p>
             </div>
             
@@ -547,10 +546,10 @@
                     <div class="form-group">
                         <select id="inquiry" class="form-control" required>
                             <option value="" disabled selected hidden></option>
-                            <option value="feedback">App Feedback (Task Hunt)</option>
-                            <option value="collab">Developer Collaboration</option>
-                            <option value="business">Business Inquiry</option>
-                            <option value="other">Other</option>
+                            <option value="App Feedback">App Feedback</option>
+                            <option value="Developer Collaboration">Developer Collaboration</option>
+                            <option value="Business Inquiry">Business Inquiry</option>
+                            <option value="Other">Other</option>
                         </select>
                         <label for="inquiry" class="form-label select-label">Reason for Contact</label>
                         <span class="error-msg">Please select an option</span>
@@ -587,7 +586,7 @@
         <div class="footer-grid container">
             <div class="footer-brand">
                 <span class="logo">Sps <span class="logo-accent">X</span> Apps</span>
-                <p class="footer-tagline">Crafting Premium Android utilities & gamified software experiences.</p>
+                <p class="footer-tagline">Crafting Premium Android utilities & unique software experiences.</p>
                 <div class="social-icons">
                     <a href="#" class="social-link" aria-label="GitHub">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">

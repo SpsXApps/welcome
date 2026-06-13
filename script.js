@@ -315,9 +315,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = true;
                 inputs.forEach(i => i.disabled = true);
 
-                // Simulate API Request Latency (1.8s)
-                setTimeout(() => {
-                    // Reset Button & Inputs
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const inquiry = document.getElementById('inquiry').value;
+                const message = document.getElementById('message').value;
+
+                // Google Form Configuration
+                // Replace with your actual Google Form action URL and field entry IDs
+                const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdjB99rhLUjWXXs7tMo0n3JWJpVno61-QhO0AzRjbZliqfbBA/formResponse';
+                
+                const formData = new URLSearchParams();
+                formData.append('entry.1848723515', name);
+                formData.append('entry.122614936', email);
+                formData.append('entry.2082635501', inquiry);
+                formData.append('entry.1252957640', message);
+
+                // Submit to Google Form asynchronously
+                fetch(googleFormUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: formData
+                })
+                .then(() => {
+                    // Reset Button & Inputs on success
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
                     inputs.forEach(i => {
@@ -338,7 +362,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             toast.classList.remove('show');
                         }, 5000);
                     }
-                }, 1800);
+                })
+                .catch((error) => {
+                    console.error('Error submitting form:', error);
+                    // Reset UI states on error to allow user to retry
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    inputs.forEach(i => i.disabled = false);
+                });
             }
         });
     }
