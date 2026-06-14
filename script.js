@@ -256,8 +256,10 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
-    const toast = document.getElementById('successToast');
-    const toastClose = document.getElementById('toastClose');
+    const successToast = document.getElementById('successToast');
+    const successToastClose = document.getElementById('toastClose');
+    const errorToast = document.getElementById('errorToast');
+    const errorToastClose = document.getElementById('errorToastClose');
 
     function validateEmail(email) {
         const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -322,7 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const message = document.getElementById('message').value;
 
                 // Google Form Configuration
-                // Replace with your actual Google Form action URL and field entry IDs
                 const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdjB99rhLUjWXXs7tMo0n3JWJpVno61-QhO0AzRjbZliqfbBA/formResponse';
                 
                 const formData = new URLSearchParams();
@@ -334,33 +335,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Submit to Google Form asynchronously
                 fetch(googleFormUrl, {
                     method: 'POST',
-                    mode: 'no-cors',
+                    mode: 'no-cors', // Opaque response
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     body: formData
                 })
-                .then(() => {
-                    // Reset Button & Inputs on success
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                    inputs.forEach(i => {
-                        i.disabled = false;
-                        i.value = '';
-                    });
-                    
-                    // Reset select control specifically to visual placeholder
-                    const select = contactForm.querySelector('select');
-                    if (select) select.selectedIndex = 0;
+                .then((response) => {
+                    // With 'no-cors', status is 0 (opaque response). If using a CORS proxy/script, status is 200.
+                    // We check if it is 200 or 0 (opaque success) to determine a successful submission.
+                    const isSuccess = response.status === 200 || response.status === 0;
 
-                    // Show success Toast Notification
-                    if (toast) {
-                        toast.classList.add('show');
+                    if (isSuccess) {
+                        // Reset Button & Inputs on success
+                        submitBtn.classList.remove('loading');
+                        submitBtn.disabled = false;
+                        inputs.forEach(i => {
+                            i.disabled = false;
+                            i.value = '';
+                        });
                         
-                        // Auto-hide toast after 5 seconds
-                        setTimeout(() => {
-                            toast.classList.remove('show');
-                        }, 5000);
+                        // Reset select control specifically to visual placeholder
+                        const select = contactForm.querySelector('select');
+                        if (select) select.selectedIndex = 0;
+
+                        // Show success Toast Notification
+                        if (successToast) {
+                            successToast.classList.add('show');
+                            
+                            // Auto-hide toast after 5 seconds
+                            setTimeout(() => {
+                                successToast.classList.remove('show');
+                            }, 5000);
+                        }
+                    } else {
+                        // Throw error if status is not successful or opaque
+                        throw new Error(`Server returned status ${response.status}`);
                     }
                 })
                 .catch((error) => {
@@ -369,14 +379,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
                     inputs.forEach(i => i.disabled = false);
+
+                    // Show error Toast Notification
+                    if (errorToast) {
+                        errorToast.classList.add('show');
+                        
+                        // Auto-hide toast after 5 seconds
+                        setTimeout(() => {
+                            errorToast.classList.remove('show');
+                        }, 5000);
+                    }
                 });
             }
         });
     }
 
-    if (toastClose && toast) {
-        toastClose.addEventListener('click', () => {
-            toast.classList.remove('show');
+    if (successToastClose && successToast) {
+        successToastClose.addEventListener('click', () => {
+            successToast.classList.remove('show');
+        });
+    }
+
+    if (errorToastClose && errorToast) {
+        errorToastClose.addEventListener('click', () => {
+            errorToast.classList.remove('show');
         });
     }
 
